@@ -1,0 +1,17 @@
+input {
+    border: 1px solid #ccc;
+    height: 36px;
+    background-color: black;
+    border-color: white;
+    color: white;
+    width:15%
+  }
+
+  body {
+    background-color: black;
+    color: white;
+  }
+
+ h3 {
+     align-self: left;
+ }
