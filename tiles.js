@@ -16,7 +16,7 @@ class ButtonA extends React.Component {
             "BASIC","BIRTH","BOARD",
             "BELOW","BENCH","BEING",
             "BLINK","BLAND","BLEND","BLACK","BLOCK",
-            "BRAND","BREAD","BROWN","BRAWN","BRAIN","BRICK",
+            "BRAND","BREAD","BROWN","BRAWN","BRAIN","BRICK","BROKE",
             "BUILD",
             "CABIN","CAUSE","CAULK",
             "CHOSE","CHIME","CHART","CHAIR","CHILD","CHORE","CHOIR",
