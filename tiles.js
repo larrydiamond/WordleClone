@@ -3,11 +3,12 @@
 class ButtonA extends React.Component {
     
     constructor(props) {
-      super(props);
-      this.keyFunction = this.keyFunction.bind(this);
-      this.row = 0;
-      this.col = 0;
-
+        super(props);
+        this.keyFunction = this.keyFunction.bind(this);
+        this.row = 0;
+        this.col = 0;
+        this.guess = '';
+        
         const wordList = new Array(
             "ABOUT","ABOVE","ACTOR",
             "AGILE","AFTER","ALTER","AGENT","AMEND","AWAIT",
@@ -58,77 +59,101 @@ class ButtonA extends React.Component {
             "VOWEL",
             "WAIST","WEIGH","WHILE","WIDTH","WORLD","WRITE","WATER",
             "YEAST","YACHT",
-        );
-      const wordOffset = Math.floor(Math.random() * wordList.length);
-      this.word = wordList [wordOffset];
-
-    }
-    keyFunction(event){
-        this.tile (event.key.toUpperCase());
-    }
-    componentDidMount(){
-      document.addEventListener("keydown", this.keyFunction, false);
-    }
-    componentWillUnmount(){
-      document.removeEventListener("keydown", this.keyFunction, false);
-    }
-
-    solveRow() {
-//        console.log ("solve for row " + this.row);
-
-        let winners = 0;
-
-        for (let c = 0; c < 5; c++) {
-            const el = "l" + this.row + c;
-            const i = document.getElementById(el);
-            const ch = i.value;
-            const offset = this.word.indexOf (ch);
-            if (offset === -1) {
-//                console.log ("did not find " + ch + " " + c);
-                i.style.backgroundColor = "gray";
-            } else {
-//                console.log ("found " + ch + " " + c + " at " + offset);
-                if (c === offset) {
-                    i.style.backgroundColor = "green";
-                    winners++;
+            );
+            const wordOffset = Math.floor(Math.random() * wordList.length);
+            this.word = wordList [wordOffset];
+            this.validWords = new Set(wordList)
+        }
+        keyFunction(event){
+            if (event.key.length > 1) return;
+            if (
+                event.key < 'A' || 
+                event.key > 'Z' && event.key < 'a' || 
+                event.key > 'z') return;
+            this.tile (event.key.toUpperCase());
+        }
+        componentDidMount(){
+            document.addEventListener("keydown", this.keyFunction, false);
+        }
+        componentWillUnmount(){
+            document.removeEventListener("keydown", this.keyFunction, false);
+        }
+        
+        solveRow() {
+            //        console.log ("solve for row " + this.row);
+            
+            let winners = 0;
+            if (!this.validWords.has(this.guess)) {
+                alert('Not a valid word');
+                this.col = 0;
+                for (let off = 0; off < 5; off++) {
+                    const el = "l" + this.row + off;
+                    const i = document.getElementById(el);
+                    i.value = ' ';
+                }
+                this.row--;
+                this.guess = '';
+                return;
+            }
+            
+            for (let c = 0; c < 5; c++) {
+                const el = "l" + this.row + c;
+                const i = document.getElementById(el);
+                const ch = i.value;
+                const offset = this.word.indexOf (ch);
+                if (offset === -1) {
+                    //                console.log ("did not find " + ch + " " + c);
+                    i.style.backgroundColor = "gray";
                 } else {
-                    i.style.backgroundColor = "orange";
+                    //                console.log ("found " + ch + " " + c + " at " + offset);
+                    if (c === offset) {
+                        i.style.backgroundColor = "green";
+                        winners++;
+                    } else {
+                        i.style.backgroundColor = "orange";
+                    }
                 }
             }
-        }
-
-        if (winners === 5) {
-            alert ("SOLVED!!!!!   YOU WIN!!!!!!   CONGRATULATIONS!!!!!");
-            location.reload();
-        }
-
-    }
-
-
-    tile (ch) {
-//        console.log ("tile");
-        const el = "l" + this.row + this.col;
-        const i = document.getElementById(el);
-        i.value = ch;
-        if (this.col === 4) {
-            this.solveRow();
-            this.col = 0;
-            if (this.row === 5) {
-                alert ("sorry try again");
+            
+            if (winners === 5) {
+                alert ("SOLVED!!!!!   YOU WIN!!!!!!   CONGRATULATIONS!!!!!");
                 location.reload();
-            } else {
-                this.row++;
             }
-        } else {
-            this.col++;
+
+            this.guess = '';
+            
+        }
+        
+        
+        tile (ch) {
+            if (ch === '\b') {
+                if (this.col > 0) { this.col-- }
+                return;
+            }
+            this.guess += ch;
+            //        console.log ("tile");
+            const el = "l" + this.row + this.col;
+            const i = document.getElementById(el);
+            i.value = ch;
+            if (this.col === 4) {
+                this.solveRow();
+                this.col = 0;
+                if (this.row === 5) {
+                    alert ("sorry try again");
+                    location.reload();
+                } else {
+                    this.row++;
+                }
+            } else {
+                this.col++;
+            }
+        }
+        
+        render(){
+            return React.createElement('button', {onClick: () => setTile ('A')}, 'Good luck!')
         }
     }
     
-  render(){
-    return React.createElement('button', {onClick: () => setTile ('A')}, 'Good luck!')
-  }
-}
-
-const buttona = document.querySelector('#buttona');
-ReactDOM.render(React.createElement(ButtonA), buttona);
-
+    const buttona = document.querySelector('#buttona');
+    ReactDOM.render(React.createElement(ButtonA), buttona);
+    
