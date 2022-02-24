@@ -10,9 +10,14 @@ class ButtonA extends React.Component {
         this.guess = '';
         
         const wordList = new Array(
-            "ABOUT","ABOVE","ACTOR",
-            "AGILE","AFTER","ALTER","AGENT","AMEND","AUDIO","ALOFT",
+            "ABOUT","ABOVE","ABORT",
+            "ACTOR",
+            "AFTER",
+            "AGENT","AGILE",
+            "ALTER","ALERT","ALOFT","ALIEN",
+            "AMEND","AMBER","AMONG",
             "AROMA",
+            "AUDIO",
             "BASIC","BIRTH","BOARD",
             "BELOW","BENCH","BEING",
             "BLINK","BLAND","BLEND","BLACK","BLOCK",
