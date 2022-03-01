@@ -39,7 +39,7 @@ class ButtonA extends React.Component {
             "DITCH",
             "DODGE","DOUBT","DOZEN",
             "DRIVE","DREAM","DRAIN","DRAFT","DRINK","DRIVE","DRONE",
-            "EIGHT","EARTH","ENJOY","EQUAL","EARLY","EMPTY","ENTRY",
+            "EIGHT","EARTH","ENJOY","EQUAL","EARLY","EMPTY","ENTRY","EQUIP","EXIST",
             "FABLE","FACET","FAITH",
             "FIELD","FIRST","FIBER","FINAL",
             "FLOAT","FLUTE","FLUID","FLASH","FLOUT",
