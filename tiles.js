@@ -99,7 +99,7 @@ class ButtonA extends React.Component {
             "SPLIT","SPICE","SPORT","SPACE","SPOIL","SPENT",
             "STAND","STACK","STAGE","STAMP",
             "STEAM",
-            "STORK","STORM","STORY","STOCK",
+            "STORK","STORM","STORY","STOCK","STONE",
             "SUGAR",
             "TABLE",
             "THOSE","THORN","THANK","THEIR","THING","THINK","THUMP",
