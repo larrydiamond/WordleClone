@@ -87,7 +87,7 @@ class ButtonA extends React.Component {
             "PURGE",
             "QUACK","QUERY","QUITE","QUICK","QUOTE","QUIET","QUAKE",
             "RABID","RAISE","RADIO",
-            "READY","REACT",
+            "READY","REACT","REACH",
             "RIGHT",
             "ROUND","ROBIN","ROAST",
             "SABLE","SAUTE",
